@@ -71,19 +71,19 @@ function draw() {
 
   playerBase.display();
   player.display();
-  
+
   playerArcher.display();
   handlePlayerArrowCollision();
 
   for (var i = 0; i < computerArrows.length; i++) {
     showArrows(i, computerArrows);
   }
- 
+
 
 
   computerBase.display();
   computer.display();
-  
+
   computerArcher.display();
   handleComputerArrowCollision();
 }
@@ -92,7 +92,7 @@ function keyPressed() {
   if (keyCode === 32) {
     var posX = playerArcher.body.position.x;
     var posY = playerArcher.body.position.y;
-    var angle = playerArcher.body.angle;
+    var angle = playerArcher.body.angle + PI / 2;
 
     var arrow = new PlayerArrow(posX, posY, 100, 10, angle);
 
@@ -105,7 +105,7 @@ function keyPressed() {
 function keyReleased() {
   if (keyCode === 32) {
     if (playerArrows.length) {
-      var angle = playerArcher.body.angle;
+      var angle = playerArcher.body.angle + PI / 2;
       playerArrows[playerArrows.length - 1].shoot(angle);
     }
   }
@@ -113,7 +113,7 @@ function keyReleased() {
 
 function showArrows(index, arrows) {
   arrows[index].display();
- 
+
 }
 
 function handleComputerArcher() {
@@ -195,8 +195,7 @@ function handleComputerArrowCollision() {
       baseCollision.collided ||
       archerCollision.collided ||
       playerCollision.collided
-    )
-    {
+    ) {
       console.log("Computer Arrow Collided")
     }
   }
